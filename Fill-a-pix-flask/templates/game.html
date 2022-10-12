@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gierka</title>
+</head>
+<body>
+
+{% if isDone %}
+    <b style="background-color:white; color:black;  font-family: 'Courier New', monospace; font-size:30px">KONIEC GRY! {{time}}<br/></b>
+ {% for i in range (height) %}
+    {% for j in range (width) %}
+
+        {% if hints_array[i][j][1] == 1 %}
+                <b style="background-color:MidnightBlue; color:PaleTurquoise;  font-family: 'Courier New', monospace; font-size:30px">&nbsp&nbsp&nbsp</b>
+        {% else %}
+                <b style="background-color:PaleTurquoise; color:MidnightBlue;  font-family: 'Courier New', monospace; font-size:30px"> &nbsp&nbsp&nbsp</b>
+        {% endif %}
+
+    {% endfor %}
+<br/>
+{% endfor %}
+<br/>
+{% else %}
+
+<h2>{{ player_name }}! Oto Twoja plansza :)</h2>
+<br>
+
+ <b style="background-color:white; color:black;  font-family: 'Courier New', monospace; font-size:30px"> &nbsp&nbsp&nbsp</b>
+{% for i in range (height) %}
+    {% if i < 10%}
+    <b style="background-color:white; color:black;  font-family: 'Courier New', monospace; font-size:30px">&nbsp{{i}}&nbsp</b>
+{% else %}
+    <b style="background-color:white; color:black;  font-family: 'Courier New', monospace; font-size:30px"> &nbsp{{i}}</b>
+{% endif %}
+{% endfor %}
+
+<br/>
+
+{% for i in range (height) %}
+
+{% if i < 10%}
+    <b style="background-color:white; color:black;  font-family: 'Courier New', monospace; font-size:30px">&nbsp{{i}}&nbsp</b>
+{% else %}
+    <b style="background-color:white; color:black;  font-family: 'Courier New', monospace; font-size:30px"> {{i}}&nbsp</b>
+{% endif %}
+
+    {% for j in range (width) %}
+
+        {% if hints_array[i][j][0] != -2 and hints_array[i][j][1] == 1 %}
+                <b style="background-color:MidnightBlue; color:PaleTurquoise;  font-family: 'Courier New', monospace; font-size:30px">&nbsp{{hints_array[i][j][0]}}&nbsp</b>
+        {% elif hints_array[i][j][0] != -2 %}
+                <b style="background-color:PaleTurquoise; color:MidnightBlue;  font-family: 'Courier New', monospace; font-size:30px"> &nbsp{{hints_array[i][j][0]}}&nbsp</b>
+        {% elif hints_array[i][j][1] == 1 and hints_array[i][j][0] == -2 %}
+                <b style="background-color:MidnightBlue; color:PaleTurquoise;  font-family: 'Courier New', monospace; font-size:30px"> &nbsp&nbsp&nbsp</b>
+        {% else %}
+                <b style="background-color:PaleTurquoise; color:MidnightBlue;  font-family: 'Courier New', monospace; font-size:30px"> &nbsp&nbsp&nbsp</b>
+        {% endif %}
+
+    {% endfor %}
+<br/>
+{% endfor %}
+<br/><br/>
+<form action="/check" method="POST" id="check">
+    <label style="font-size:15px; ">Wiersz: </label>
+    <input type="text" name="row" style="width:30px; font-size:15px">
+    <label style="font-size:15px">Kolumna: </label>
+    <input type="text" name="column" style="width:30px; font-size:15px;">
+    <button style="font-size:15px;" type="submit">Strzelaj</button>
+</form>
+<br/>
+{% if not correct_answer %}
+    <b style="background-color:white; color:red;  font-size:17px">Niepoprawna odpowiedź, spróbuj jeszcze raz!</b>
+{% endif %}
+
+<br/><br/>
+<form action="/" id="home">
+    <button style="font-size:15px" type="submit">Strona startowa</button>
+</form>
+
+
+{% endif %}
+
+</body>
+</html>

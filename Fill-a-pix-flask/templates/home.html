@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FILL-A-PIX</title>
+</head>
+<body>
+<h1>FILL-A-PIX</h1>
+<br>
+
+<form action="/game" method="POST" id="new">
+    <label for="player">Podaj swój nick:</label>
+    <input type="text" name="player" id="player"/>
+    <br><br/>
+    <label for="size">Wybierz rozmiar planszy:</label>
+    <select id="size" name="sizes">
+      <option value="3">3x3</option>
+      <option value="5">5x5</option>
+      <option value="7">7x7</option>
+      <option value="10">10x10</option>
+      <option value="12">12x12</option>
+      <option value="15">15x15</option>
+      <option value="17">17x17</option>
+      <option value="20">20x20</option>
+      <option value="25">25x25</option>
+    </select>
+    <br><br/>
+    <label for="board">Wybierz planszę:</label>
+    <select id="board" name="boards">
+      <option value="0">Serce</option>
+      <option value="1">Dom</option>
+      <option value="2">Kłódka</option>
+    </select>
+    <br><br/>
+    <label for="save-and-load">Sposób zapamiętywania stanu gry:</label>
+    <select id="save-and-load" name="save-and-load">
+      <option value="M">Pamięć operacyjna</option>
+      <option value="F">Plik tekstowy</option>
+    </select>
+    <br><br/>
+    <button type="submit">Zatwierdz</button>
+</form>
+
+<br><br/><br/>
+<form action="/load-from-file" method="POST" id="exist-in-file">
+    <input type="file" name="file">
+    <button type="submit">Załaduj z pliku</button>
+</form>
+<br><br/>
+<form action="/load" method="POST" id="exist">
+    <button type="submit">Załaduj z pamięci</button>
+</form>
+
+</body>
+</html>
